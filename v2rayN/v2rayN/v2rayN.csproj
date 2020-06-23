@@ -371,6 +371,7 @@
     <None Include="Resources\minimize.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="TextFile1.txt" />
     <None Include="Resources\share.png" />
     <None Include="Resources\promotion.png" />
     <EmbeddedResource Include="Sample\BlankPac.txt" />
