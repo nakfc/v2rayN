@@ -208,6 +208,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tool\FileManager.cs" />
+    <Compile Include="Tool\HotKey.cs" />
     <Compile Include="Tool\Job.cs" />
     <Compile Include="Tool\QueryableExtension.cs" />
     <Compile Include="Tool\UIRes.cs" />

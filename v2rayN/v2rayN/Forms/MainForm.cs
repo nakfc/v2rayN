@@ -105,6 +105,31 @@ namespace v2rayN.Forms
         }
 
 
+
+        protected override void WndProc(ref Message m)
+        {
+
+            const int WM_HOTKEY = 0x0312;
+            //按快捷键 
+            switch (m.Msg)
+            {
+                case WM_HOTKEY:
+                    switch (m.WParam.ToInt32())
+                    {
+                        case 100:
+                            SetListenerType(ListenerType.noHttpProxy);
+                            break;
+                        case 101:
+                            SetListenerType(ListenerType.GlobalHttp);
+                            break;
+                        case 102:
+                            SetListenerType(ListenerType.GlobalPac);
+                            break;
+                    }
+                    break;
+            }
+            base.WndProc(ref m);
+        }
         //private const int WM_QUERYENDSESSION = 0x0011;
         //protected override void WndProc(ref Message m)
         //{
@@ -404,7 +429,7 @@ namespace v2rayN.Forms
             {
                 return;
             }
-            
+
         }
         #endregion
 
@@ -1594,6 +1619,27 @@ namespace v2rayN.Forms
 
 
         #endregion
+
+        #region 全局快捷键触发函数
+        private void Form_Activated(object sender, EventArgs e)
+        {
+            //注册热键Shift+S，Id号为100。HotKey.KeyModifiers.Shift也可以直接使用数字4来表示。
+            HotKey.RegisterHotKey(Handle, 100, HotKey.KeyModifiers.Ctrl | HotKey.KeyModifiers.Alt, Keys.NumPad7);
+            HotKey.RegisterHotKey(Handle, 101, HotKey.KeyModifiers.Ctrl | HotKey.KeyModifiers.Alt, Keys.NumPad8);
+            HotKey.RegisterHotKey(Handle, 102, HotKey.KeyModifiers.Ctrl | HotKey.KeyModifiers.Alt, Keys.NumPad9);
+        }
+        //在FormA的Leave事件中注销热键。
+        private void FrmSale_Leave(object sender, EventArgs e)
+        {
+            //注销Id号为100的热键设定
+            HotKey.UnregisterHotKey(Handle, 100);
+            //注销Id号为101的热键设定
+            HotKey.UnregisterHotKey(Handle, 101);// http://ike.126.com
+                                                 //注销Id号为102的热键设定
+            HotKey.UnregisterHotKey(Handle, 102);
+        }
+        #endregion
+
 
     }
 }
