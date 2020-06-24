@@ -16,3 +16,26 @@
 /v2rayN/v2rayUpgrade/obj/Debug 
 /v2rayN/v2rayUpgrade/bin/Release
 /v2rayN/v2rayUpgrade/obj/Release
+
+# Build Output
+bin/
+obj/
+
+# NuGet
+*.nupkg
+packages/
+
+# Visual Studio
+.vs/
+.vscode/
+publish/
+TestResults/
+*.suo
+*.user
+
+# Cake
+/tools
+
+/temp/
+/dist/
+*.pfx
