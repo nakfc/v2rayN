@@ -838,6 +838,9 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
+            // 订阅全局按键事件
+            this.Shown += new System.EventHandler(this.Form_Activated);
+            this.tsbClose.Click += new System.EventHandler(this.FrmSale_Leave);
         }
 
 #endregion
