@@ -821,6 +821,7 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.VisibleChanged += new System.EventHandler(this.MainForm_VisibleChanged);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.scMain.Panel1.ResumeLayout(false);
             this.scMain.Panel2.ResumeLayout(false);
@@ -838,9 +839,6 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
-            // 订阅全局按键事件
-            this.Shown += new System.EventHandler(this.Form_Activated);
-            this.tsbClose.Click += new System.EventHandler(this.FrmSale_Leave);
         }
 
 #endregion

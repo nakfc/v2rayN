@@ -20,6 +20,8 @@ namespace v2rayN.Forms
         private List<int> lvSelecteds = new List<int>();
         private StatisticsHandler statistics = null;
 
+        const int WM_HOTKEY = 0x0312;
+
         #region Window 事件
 
         public MainForm()
@@ -42,10 +44,13 @@ namespace v2rayN.Forms
                 statistics?.SaveToFile();
                 statistics?.Close();
             };
+
+            HotKeyActivated();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            
             ConfigHandler.LoadConfig(ref config);
             v2rayHandler = new V2rayHandler();
             v2rayHandler.ProcessEvent += v2rayHandler_ProcessEvent;
@@ -79,6 +84,9 @@ namespace v2rayN.Forms
 
             HideForm();
 
+            // 尝试激活全局快捷键
+            //HotKeyActivated();
+
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -86,7 +94,7 @@ namespace v2rayN.Forms
             if (e.CloseReason == CloseReason.UserClosing)
             {
                 StorageUI();
-                e.Cancel = true;
+                //e.Cancel = true;
                 HideForm();
                 return;
             }
@@ -106,30 +114,7 @@ namespace v2rayN.Forms
 
 
 
-        protected override void WndProc(ref Message m)
-        {
 
-            const int WM_HOTKEY = 0x0312;
-            //按快捷键 
-            switch (m.Msg)
-            {
-                case WM_HOTKEY:
-                    switch (m.WParam.ToInt32())
-                    {
-                        case 100:
-                            SetListenerType(ListenerType.noHttpProxy);
-                            break;
-                        case 101:
-                            SetListenerType(ListenerType.GlobalHttp);
-                            break;
-                        case 102:
-                            SetListenerType(ListenerType.GlobalPac);
-                            break;
-                    }
-                    break;
-            }
-            base.WndProc(ref m);
-        }
         //private const int WM_QUERYENDSESSION = 0x0011;
         //protected override void WndProc(ref Message m)
         //{
@@ -148,6 +133,36 @@ namespace v2rayN.Forms
         //            break;
         //    }
         //}
+
+        protected override void WndProc(ref Message m)
+        {
+            StartHotKeyListen(ref m);
+        }
+
+        public void StartHotKeyListen(ref Message m)
+        {
+            //按快捷键 
+            switch (m.Msg)
+            {
+                case WM_HOTKEY:
+                    switch (m.WParam.ToInt32())
+                    {
+                        case 100:
+                            SetListenerType(ListenerType.noHttpProxy);
+                            break;
+                        case 101:
+                            SetListenerType(ListenerType.GlobalHttp);
+                            break;
+                        case 102:
+                            SetListenerType(ListenerType.GlobalPac);
+                            break;
+                    }
+                    break;
+                default:
+                    base.WndProc(ref m);
+                    break;
+            }
+        }
 
         private void RestoreUI()
         {
@@ -1075,7 +1090,7 @@ namespace v2rayN.Forms
             this.Show();
             this.WindowState = FormWindowState.Normal;
             this.Activate();
-            this.ShowInTaskbar = true;
+            //this.ShowInTaskbar = true;
             //this.notifyIcon1.Visible = false;
             this.txtMsgBox.ScrollToCaret();
             if (config.index >= 0 && config.index < lvServers.Items.Count)
@@ -1091,10 +1106,10 @@ namespace v2rayN.Forms
             //this.WindowState = FormWindowState.Minimized;
             this.Hide();
             //this.notifyMain.Icon = this.Icon;
-            this.notifyMain.Visible = true;
-            this.ShowInTaskbar = false;
+            //this.notifyMain.Visible = true;
+            //this.ShowInTaskbar = false;
 
-            SetVisibleCore(false);
+            //SetVisibleCore(false);
         }
 
         #endregion
@@ -1621,7 +1636,10 @@ namespace v2rayN.Forms
         #endregion
 
         #region 全局快捷键触发函数
-        private void Form_Activated(object sender, EventArgs e)
+        /// <summary>
+        /// 注册热键
+        /// </summary>
+        private void HotKeyActivated()
         {
             //注册热键Shift+S，Id号为100。HotKey.KeyModifiers.Shift也可以直接使用数字4来表示。
             HotKey.RegisterHotKey(Handle, 100, HotKey.KeyModifiers.Ctrl | HotKey.KeyModifiers.Alt, Keys.NumPad7);
@@ -1629,17 +1647,12 @@ namespace v2rayN.Forms
             HotKey.RegisterHotKey(Handle, 102, HotKey.KeyModifiers.Ctrl | HotKey.KeyModifiers.Alt, Keys.NumPad9);
         }
         //在FormA的Leave事件中注销热键。
-        private void FrmSale_Leave(object sender, EventArgs e)
-        {
-            //注销Id号为100的热键设定
-            HotKey.UnregisterHotKey(Handle, 100);
-            //注销Id号为101的热键设定
-            HotKey.UnregisterHotKey(Handle, 101);// http://ike.126.com
-                                                 //注销Id号为102的热键设定
-            HotKey.UnregisterHotKey(Handle, 102);
-        }
+
         #endregion
 
-
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            MessageBox.Show("sdfsdf");
+        }
     }
 }
