@@ -1,6 +1,6 @@
 ﻿namespace v2rayN.Forms
 {
-    partial class AddServerForm
+    partial class AddServer5Form
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddServerForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddServer5Form));
             this.btnClose = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnGUID = new System.Windows.Forms.Button();
@@ -61,8 +61,6 @@
             this.txtRemarks = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtAlterId = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtPort = new System.Windows.Forms.TextBox();
@@ -104,8 +102,6 @@
             this.groupBox1.Controls.Add(this.txtRemarks);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.txtAlterId);
-            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txtId);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txtPort);
@@ -304,13 +300,10 @@
             // cmbSecurity
             // 
             resources.ApplyResources(this.cmbSecurity, "cmbSecurity");
-            this.cmbSecurity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSecurity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
             this.cmbSecurity.FormattingEnabled = true;
             this.cmbSecurity.Items.AddRange(new object[] {
-            resources.GetString("cmbSecurity.Items"),
-            resources.GetString("cmbSecurity.Items1"),
-            resources.GetString("cmbSecurity.Items2"),
-            resources.GetString("cmbSecurity.Items3")});
+            resources.GetString("cmbSecurity.Items")});
             this.cmbSecurity.Name = "cmbSecurity";
             // 
             // txtRemarks
@@ -327,16 +320,6 @@
             // 
             resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
-            // 
-            // txtAlterId
-            // 
-            resources.ApplyResources(this.txtAlterId, "txtAlterId");
-            this.txtAlterId.Name = "txtAlterId";
-            // 
-            // label4
-            // 
-            resources.ApplyResources(this.label4, "label4");
-            this.label4.Name = "label4";
             // 
             // txtId
             // 
@@ -427,7 +410,7 @@
             this.MenuItemImportClipboard.Name = "MenuItemImportClipboard";
             this.MenuItemImportClipboard.Click += new System.EventHandler(this.MenuItemImportClipboard_Click);
             // 
-            // AddServerForm
+            // AddServer5Form
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -437,8 +420,8 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuServer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "AddServerForm";
-            this.Load += new System.EventHandler(this.AddServerForm_Load);
+            this.Name = "AddServer5Form";
+            this.Load += new System.EventHandler(this.AddServer5Form_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -461,8 +444,6 @@
         private System.Windows.Forms.TextBox txtRemarks;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtAlterId;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtPort;
