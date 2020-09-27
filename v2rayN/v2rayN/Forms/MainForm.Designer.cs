@@ -221,7 +221,7 @@
             // 
             resources.ApplyResources(this.menuAddVlessServer, "menuAddVlessServer");
             this.menuAddVlessServer.Name = "menuAddVlessServer";
-            this.menuAddVlessServer.Click += new System.EventHandler(this.menuAddVlessServer_Click);
+            //this.menuAddVlessServer.Click += new System.EventHandler(this.menuAddVlessServer_Click);
             // 
             // menuAddShadowsocksServer
             // 
